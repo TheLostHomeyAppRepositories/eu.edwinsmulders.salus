@@ -741,7 +741,7 @@
         "en": "Wiring Centre"
       },
       "description": {
-        "en": "Salus underfloor heating wiring centre (CB12RF/KL08RF) with pump, boiler and zone status."
+        "en": "Salus underfloor heating wiring centre (CB12RF) with pump, boiler and zone status."
       },
       "class": "sensor",
       "platforms": [

@@ -14,7 +14,9 @@ This app is provided **as is**, without warranties and without any promise of fu
 
 - Salus Quantum Thermostat family (`SQ610RF` / `SQ610`)
 - Salus Smart Plug (`SPE600` / `SP600`)
-- Salus underfloor heating wiring centres (`CB12RF` / `KL08RF`)
+- Salus underfloor heating wiring centre (`CB12RF`)
+
+The older `KL08RF` wiring centre (with or without the `KL04RF` extension) is not supported: the Salus cloud reports no pump, boiler or zone data for it, only online status and error flags. Its zones' heating activity is available from the paired thermostats.
 
 ## Current Features
 

@@ -22,8 +22,10 @@ class SalusWiringCenterDriver extends SalusDriverBase {
   }
 
   filterPairableDevice(device) {
-    // Wiring centers are recognized by their zone-control cluster, so all
-    // models (CB12RF, KL08RF, ...) qualify without a model list.
+    // Wiring centers are recognized by their zone-control cluster (sIT6ZB)
+    // rather than a model list. The KL08RF (cloud model it600WC/it600WCNH)
+    // reports no sIT6ZB cluster, so no pump, boiler or zone data, and is
+    // deliberately not pairable.
     const props = device?._shadow_properties || {};
     return typeof props['ep8:sIT6ZB:PumpOutput'] === 'number'
       || typeof props['ep9:sIT6ZB:PumpOutput'] === 'number';
