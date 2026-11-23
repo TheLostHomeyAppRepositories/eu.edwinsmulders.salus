@@ -35,6 +35,17 @@ class SalusCloudApp extends Homey.App {
     }
   }
 
+  /**
+   * Stands in for the account email in logs and auth stats. App logs travel
+   * with every diagnostic report users submit, so they must not carry the
+   * email; a short hash still tells accounts apart.
+   */
+  _accountLogLabel(email) {
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    if (!normalizedEmail) return 'unknown-account';
+    return `account-${crypto.createHash('sha256').update(normalizedEmail, 'utf8').digest('hex').slice(0, 8)}`;
+  }
+
   _accountKey(email, password) {
     const normalizedEmail = String(email || '').trim().toLowerCase();
     const raw = `${normalizedEmail}|${String(password || '')}`;
@@ -46,7 +57,7 @@ class SalusCloudApp extends Homey.App {
     const key = this._accountKey(email, password);
     let account = this._accounts.get(key);
     if (!account) {
-      const label = normalizedEmail || 'unknown-account';
+      const label = this._accountLogLabel(normalizedEmail);
       account = {
         key,
         label,
